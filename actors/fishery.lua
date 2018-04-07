@@ -14,8 +14,8 @@ function Fishery.update_fish_chunks()
    else
       if fish_chunk_index <= #fish_chunks then
          local chunk_name = fish_chunks[fish_chunk_index]
-         global.fish_in_chunk[chunk_name] = global.fish_in_chunk[chunk_name] + math.random(0,10)
-         fish_chunk_index = fish_chunk_index + 1  
+         global.fish_in_chunk[chunk_name] = global.fish_in_chunk[chunk_name] + math.random(0,10000)
+         fish_chunk_index = fish_chunk_index + 1
       else
          fish_chunks = {}
       end
@@ -28,14 +28,14 @@ function Fishery:init()
    self.state.chunk_y = math.floor(self.state.entity.position.y / chunk_size)
    self.state.chunk_name = "["..self.state.chunk_x..","..self.state.chunk_y.."]"
    PrintToAllPlayers(self.state.chunk_name)
-   
+
    if global.fish_in_chunk == nil then
       global.fish_in_chunk = {}
    end
    if global.fish_in_chunk[self.state.chunk_name] == nil then
       global.fish_in_chunk[self.state.chunk_name] = config.fish_per_chunk
    end
-   
+
    self:increment_harvest_timer()
 end
 
