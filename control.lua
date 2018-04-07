@@ -119,7 +119,7 @@ script.on_event(defines.events.on_player_created, on_player_created)
 script.on_event(defines.events.on_preplayer_mined_item, before_player_mined_item)
 script.on_event(defines.events.on_robot_pre_mined, before_robot_mined)
 script.on_event(defines.events.on_resource_depleted, on_resource_depleted)
-script.on_event(defines.events.on_tick, on_tick)
+-- script.on_event(defines.events.on_tick, on_tick)
 
 remote.add_interface("homeworld", {
 	get_homeworld = function()
