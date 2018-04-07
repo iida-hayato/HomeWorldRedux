@@ -1,0 +1,54 @@
+
+Homeworld issues list:
+
+portal.lua has the code to empty out the inventory it seems. Make it not take anything that isn't required.
+
+Latest version of tiers.lua from git has different reqs for tiers, rewards seem the same but layout changed so might have missed something
+
+The rewards seem to be a single item from the list, put into a chest spawned at the top left square of the portal. Probably a better way to do that.
+
+homeworld_logic.lua:
+Added code to check for portal entities exist on nauvis before attempting to give reward, preventing hang
+
+tiers.lua:
+alien science pack rewards changed to high-tech-science-pack
+Various names updated from old names
+
+info.json: various stuff for new version, changed mod name
+
+entities.lua:
+19 instances of __homeworld__ replaced with __homeworld_redux__
+2 instances of icon_size = 32 added for fish.png icon
+
+fluids.lua:
+3 instances of __homeworld__ replaced with __homeworld_redux__
+
+technology.lua: 
+alien tech used to be used to unlock making homeworld portals. Changed to Adv Elec 2 (hi-tech science), renamed variable "HiTech"
+terraforming-2 uses alien science pack for research. Changed to "high-tech-science-pack"
+terraforming-2 prereq changed from "alien-technology" to "advanced-electronics-2"
+Four instances of __homeworld__ replaced with __homeworld_redux__
+1 instance of icon_size = 32 added for fish.png icon
+
+gui_helpers.lua: 
+gui.icon changed for oil barrel exception - uses empty barrel icon due to differences in how the game handles barrel icons
+
+progressbar_styles.lua: 
+"less-then" -> "less-than"
+
+items.lua: 
+water-barrel and wine-barrel - subgroup changed from "barrel" -> "fill-barrel"
+25 instances of __homeworld__ replaced with __homeworld_redux__
+
+terraforming.lua: 
+seeder-module ingredient change from "alien-artifact" to "high-tech-science-pack"
+Terraformer-module ingredient change from "alien-artifact" to "high-tech-science-pack"
+8 instances of __homeworld__ replaced with __homeworld_redux__
+
+recipes.lua: 
+changed fill-beer-barrel subgroup from barrel to fill-barrel
+homeworld portal ingredient change from "alien-artifact" to "high-tech-science-pack"
+Four instances of __homeworld__ replaced with __homeworld_redux__
+
+resources.lua:
+2 instances of __homeworld__ replaced with __homeworld_redux__
