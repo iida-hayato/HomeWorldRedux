@@ -4,9 +4,9 @@ return {
         starting_tier = 1,
         starting_population = 1000,
         min_population = 10,
-        update_interval = 1 * SECONDS
+        update_interval = 10 * SECONDS
     },
-    
+
     farm = {
         production_interval = 5 * GAME_DAY,
         production_interval_deviation = 1 * GAME_DAY,
@@ -19,7 +19,7 @@ return {
             {item_name = "vegetables", yield_per_min = 10},
             {item_name = "hops", yield_per_min = 10},
             {item_name = "grapes", yield_per_min = 5},
-        }, 
+        },
         soil_richness = {
             ["water"]       = 5.00,
             ["deepwater"]   = 5.00,
@@ -35,7 +35,7 @@ return {
             "farm", "farm_01", "farm_02", "farm_03", "farm_full"
         }
     },
-    
+
     fishery = {
         max_pollution = 4000,
         max_fish_yield_per_min = 400,
@@ -49,18 +49,18 @@ return {
         harvest_interval = 20 * SECONDS,
         radius = 12
     },
-    
+
     portal = {
         update_interval = 60 * SECONDS,
         test_mode = false
     },
-    
+
     sawmill = {
         saw_interval = 10 * SECONDS,
         work_radius = 20,
         tree_multiplier = 2
     },
-    
+
     seeder = {
         tree_types = {
             ["seeder-module-01"] = "tree-01",
@@ -74,7 +74,7 @@ return {
         plant_radius = 16,
         plant_precision = 4.0
     },
-    
+
     terraformer = {
         radius = 50,
         min_step_interval = 10, -- Ticks.
@@ -88,7 +88,7 @@ return {
             ["terraform-module-concrete"] = "concrete",
         }
     },
-    
+
     belt_throughput_reader = {
         max_snapshots = 1 * MINUTES,
         calculate_throughput_interval = 5 * SECONDS
