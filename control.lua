@@ -43,7 +43,7 @@ function on_entity_died( event )
 end
 
 function on_tick( event )
-  if ModuloTimer(10 * SECONDS) then
+  if ModuloTimer(1 * SECONDS) then
     tick_all_actors(event.tick)
   end
   Homeworld:tick(event.tick)
