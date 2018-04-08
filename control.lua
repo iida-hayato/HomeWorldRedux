@@ -43,7 +43,9 @@ function on_entity_died( event )
 end
 
 function on_tick( event )
-  tick_all_actors(event.tick)
+  if ModuloTimer(10 * SECONDS) then
+    tick_all_actors(event.tick)
+  end
   Homeworld:tick(event.tick)
     if ModuloTimer(30 * SECONDS) then
       Fishery.update_fish_chunks()

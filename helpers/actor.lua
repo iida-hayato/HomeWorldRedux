@@ -109,9 +109,7 @@ function tick_all_actors( tick )
         for _, actor in ipairs(class._instances) do
             if actor.state.entity and actor.state.entity.valid then
                 actor:_tick_gui()
-                if ModuloTimer(10 * SECONDS) then
-                  actor:tick( tick )
-                end
+                actor:tick( tick )
             end
         end
     end
