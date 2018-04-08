@@ -2,22 +2,26 @@ Fishery = Actor{name = "fishery", use_entity_gui = true}
 
 local config = homeworld_config.fishery;
 
-local fish_chunks = {}
-local fish_chunk_index = 1
 function Fishery.update_fish_chunks()
    if global.fish_in_chunk == nil then return end
-   if #fish_chunks == 0 then
+   if global.fish_chunk_index == nil then
+     global.fish_chunk_index = 1
+   end
+   if global.fish_chunks == nil then
+     global.fish_chunks = {}
+   end
+   if #global.fish_chunks == 0 then
       for chunk_name, num_fish in pairs(global.fish_in_chunk) do
-         table.insert(fish_chunks, chunk_name)
+         table.insert(global.fish_chunks, chunk_name)
       end
-      fish_chunk_index = 1
+      global.fish_chunk_index = 1
    else
-      if fish_chunk_index <= #fish_chunks then
-         local chunk_name = fish_chunks[fish_chunk_index]
-         global.fish_in_chunk[chunk_name] = global.fish_in_chunk[chunk_name] + math.random(0,10000)
-         fish_chunk_index = fish_chunk_index + 1
+      if global.fish_chunk_index <= #global.fish_chunks then
+         local chunk_name = global.fish_chunks[global.fish_chunk_index]
+         global.fish_in_chunk[chunk_name] = global.fish_in_chunk[chunk_name] + math.random(0,900)
+         global.fish_chunk_index = global.fish_chunk_index + 1
       else
-         fish_chunks = {}
+         global.fish_chunks = {}
       end
    end
 end
