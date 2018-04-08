@@ -48,7 +48,7 @@ function on_tick( event )
   end
   Homeworld:tick(event.tick)
     if ModuloTimer(30 * SECONDS) then
-      -- Fishery.update_fish_chunks()
+      Fishery.update_fish_chunks()
     end
 end
 
