@@ -130,6 +130,7 @@ end
 function Fishery:show_gui( player_index, gui )
    GUI.push_left_section(player_index)
    gui[player_index] = GUI.push_parent(GUI.frame("fishery", "Fishery", GUI.VERTICAL))
+   gui[player_index].clear()
    GUI.label_data("fishamount", "Potential fish:", "0")
    GUI.label_data("nearbyfishery", "Overfishing:", "0%")
    GUI.label_data("purity", "Water Purity:", "0%")

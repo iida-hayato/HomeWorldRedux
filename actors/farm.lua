@@ -9,7 +9,7 @@ function Farm:init()
 	state.current_production_interval = config.production_interval
 	state.current_state = STATE_GROWING
 	state.stage = 1
-	
+
 	-- Calculate soil richness.
 	local surface = state.entity.surface
 	local area = SquareArea(state.entity.position, config.radius)
@@ -55,8 +55,8 @@ end
 
 function Farm:can_reset()
 	local state = self.state
-	return state.entity.valid 
-		and ((state.next_reset_tick and game.tick >= state.next_reset_tick) 
+	return state.entity.valid
+		and ((state.next_reset_tick and game.tick >= state.next_reset_tick)
 		or (state.entity.name == 'farm_full'  and self:inventory_empty()))
 end
 
@@ -78,18 +78,18 @@ end
 function Farm:get_growth()
 	local format = "%i%%"
 	local state = self.state
-	
-	
+
+
 	if state.current_state == STATE_GROWING then
 		local previous_yield_tick = state.previous_yield_tick --nil
 		local next_yield_tick = state.next_yield_tick --good
 		local current_tick = game.tick --good
-				
+
 		if previous_yield_tick and next_yield_tick and current_tick then
 			local growth_decimal = 1 - (next_yield_tick - current_tick) / (next_yield_tick - previous_yield_tick)
 		return string.format(format, math.floor(growth_decimal * 100))
 		end
-		
+
 		return 'error-in-cal'
 	elseif state.current_state == STATE_RESETTING then
 		return 'Mature'
@@ -123,7 +123,7 @@ end
 
 function Farm:tick()
    local state = self.state
-   
+
    --Increment production timer or spawn produce
    if state.current_state == STATE_GROWING then
 	  if self:can_operate() then
@@ -141,7 +141,7 @@ function Farm:tick()
 			self:increment_production_timer()
 		end
    end
-   
+
    --Updates farm entity (visual)
    if ModuloTimer(5 * SECONDS) then
 	  local production_tick = state.current_production_interval - (state.next_yield_tick - game.tick)
@@ -153,7 +153,7 @@ function Farm:tick()
 		 end
 	  end
    end
-   
+
    --Updates farm gui every second
    if ModuloTimer(1 * SECONDS) then
 	  for player_index, frame in pairs(state.gui) do
@@ -176,6 +176,7 @@ end
 function Farm:show_gui( player_index, gui )
 	GUI.push_left_section(player_index)
 	gui[player_index] = GUI.push_parent(GUI.frame("farm_gui", "Farm", GUI.VERTICAL))
+	gui[player_index].clear()
 	GUI.label_data("richness", "Soil Richness:", "0%")
 	GUI.label_data("purity", "Air Purity:", "0%")
 	GUI.label_data("yield", "Yield:", "0%")
