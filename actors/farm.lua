@@ -122,44 +122,44 @@ function Farm:set_entity_stage( stage )
 end
 
 function Farm:tick()
-   -- local state = self.state
-	 --
-   -- --Increment production timer or spawn produce
-   -- if state.current_state == STATE_GROWING then
-	 --  if self:can_operate() then
-		-- local yield_multiplier = self:get_yield() * state.current_production_interval * (1/MINUTES)
-		-- local inventory = state.entity.get_inventory(1)
-		-- for i, produce in ipairs(config.produce) do
-		-- 	local yield = math.max(produce.yield_per_min * yield_multiplier, 1)
-		-- 	inventory.insert{name = produce.item_name, count = yield}
-		-- end
-		-- self:increment_reset_timer()
-	 --  end
-   -- elseif state.current_state == STATE_RESETTING then
-		-- if self:can_reset() then
-		-- 	self:set_entity_stage(1)
-		-- 	self:increment_production_timer()
-		-- end
-   -- end
-	 --
-   -- --Updates farm entity (visual)
-   -- if ModuloTimer(5 * SECONDS) then
-	 --  local production_tick = state.current_production_interval - (state.next_yield_tick - game.tick)
-	 --  local increment = state.current_production_interval / #config.farm_stages
-	 --  for i = #config.farm_stages, 1, -1 do
-		--  if production_tick >= (increment*i) then
-		-- 	self:set_entity_stage(i)
-		-- 	break
-		--  end
-	 --  end
-   -- end
-	 --
-   -- --Updates farm gui every second
-   -- if ModuloTimer(1 * SECONDS) then
-	 --  for player_index, frame in pairs(state.gui) do
-		--  self:update_gui(player_index, state.gui)
-	 --  end
-   -- end
+   local state = self.state
+
+   --Increment production timer or spawn produce
+   if state.current_state == STATE_GROWING then
+	  if self:can_operate() then
+		local yield_multiplier = self:get_yield() * state.current_production_interval * (1/MINUTES)
+		local inventory = state.entity.get_inventory(1)
+		for i, produce in ipairs(config.produce) do
+			local yield = math.max(produce.yield_per_min * yield_multiplier, 1)
+			inventory.insert{name = produce.item_name, count = yield}
+		end
+		self:increment_reset_timer()
+	  end
+   elseif state.current_state == STATE_RESETTING then
+		if self:can_reset() then
+			self:set_entity_stage(1)
+			self:increment_production_timer()
+		end
+   end
+
+   --Updates farm entity (visual)
+   if ModuloTimer(5 * SECONDS) then
+	  local production_tick = state.current_production_interval - (state.next_yield_tick - game.tick)
+	  local increment = state.current_production_interval / #config.farm_stages
+	  for i = #config.farm_stages, 1, -1 do
+		 if production_tick >= (increment*i) then
+			self:set_entity_stage(i)
+			break
+		 end
+	  end
+   end
+
+   --Updates farm gui every second
+   if ModuloTimer(1 * SECONDS) then
+	  for player_index, frame in pairs(state.gui) do
+		 self:update_gui(player_index, state.gui)
+	  end
+   end
 
 end
 

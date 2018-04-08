@@ -105,26 +105,26 @@ function Fishery:count_nearby_fisheries()
 end
 
 function Fishery:tick( tick )
-   -- local entity = self.state.entity
-   -- if self:can_harvest() then
-   --    local yield = math.floor(self:get_yield())
-   --    local fish_stack = {
-   --       name = "raw-fish",
-   --       count = yield
-   --    }
-   --    local inventory = entity.get_inventory(1)
-   --    if yield > 0 and inventory.can_insert(fish_stack) then
-   --       inventory.insert(fish_stack)
-   --       self:remove_fish_in_chunk(yield)
-   --    end
-   --    self:increment_harvest_timer()
-   -- end
-   -- -- Update GUI.
-   -- if ModuloTimer(1 * SECONDS) then
-   --    for player_index, frame in pairs(self.state.gui) do
-   --       self:update_gui(player_index, self.state.gui)
-   --    end
-   -- end
+   local entity = self.state.entity
+   if self:can_harvest() then
+      local yield = math.floor(self:get_yield())
+      local fish_stack = {
+         name = "raw-fish",
+         count = yield
+      }
+      local inventory = entity.get_inventory(1)
+      if yield > 0 and inventory.can_insert(fish_stack) then
+         inventory.insert(fish_stack)
+         self:remove_fish_in_chunk(yield)
+      end
+      self:increment_harvest_timer()
+   end
+   -- Update GUI.
+   if ModuloTimer(1 * SECONDS) then
+      for player_index, frame in pairs(self.state.gui) do
+         self:update_gui(player_index, self.state.gui)
+      end
+   end
 end
 
 function Fishery:show_gui( player_index, gui )
