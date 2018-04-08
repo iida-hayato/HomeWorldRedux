@@ -31,7 +31,6 @@ function Fishery:init()
    self.state.chunk_x = math.floor(self.state.entity.position.x / chunk_size)
    self.state.chunk_y = math.floor(self.state.entity.position.y / chunk_size)
    self.state.chunk_name = "["..self.state.chunk_x..","..self.state.chunk_y.."]"
-   PrintToAllPlayers(self.state.chunk_name)
 
    if global.fish_in_chunk == nil then
       global.fish_in_chunk = {}
