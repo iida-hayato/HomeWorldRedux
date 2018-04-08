@@ -43,8 +43,10 @@ function on_entity_died( event )
 end
 
 function on_tick( event )
+  if ModuloTimer(600) then
     tick_all_actors(event.tick)
-    Homeworld:tick(event.tick)
+  end
+  Homeworld:tick(event.tick)
     if ModuloTimer(20000) then
       Fishery.update_fish_chunks()
     end
@@ -119,7 +121,7 @@ script.on_event(defines.events.on_player_created, on_player_created)
 script.on_event(defines.events.on_preplayer_mined_item, before_player_mined_item)
 script.on_event(defines.events.on_robot_pre_mined, before_robot_mined)
 script.on_event(defines.events.on_resource_depleted, on_resource_depleted)
--- script.on_event(defines.events.on_tick, on_tick)
+script.on_event(defines.events.on_tick, on_tick)
 
 remote.add_interface("homeworld", {
 	get_homeworld = function()
