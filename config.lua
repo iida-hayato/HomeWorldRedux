@@ -4,7 +4,7 @@ return {
         starting_tier = 1,
         starting_population = 1000,
         min_population = 10,
-        update_interval = 10 * SECONDS
+        update_interval = 1 * SECONDS
     },
 
     farm = {
